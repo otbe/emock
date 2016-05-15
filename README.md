@@ -1,7 +1,7 @@
 #emock
 *emock* generates automatically mocks from you classes.
 
-[![Build Status](https://travis-ci.org/otbe/emock.svg?branch=master)](https://travis-ci.org/otbe/automock)
+[![Build Status](https://travis-ci.org/otbe/emock.svg?branch=master)](https://travis-ci.org/otbe/emock)
 [![Coverage Status](https://coveralls.io/repos/github/otbe/emock/badge.svg?branch=master)](https://coveralls.io/github/otbe/emock?branch=master)
 
 The entire public API will be mocked. It is especially designed to use in conjunction with ES6 classes (but not exclusive).

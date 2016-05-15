@@ -1,10 +1,11 @@
 {
   "name": "emock",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "emock generates automatically mocks from you classes",
   "main": "dist/emock.js",
   "typings": "dist/emock.d.ts",
   "scripts": {
+    "prepublish": "npm run build",
     "postinstall": "typings install",
     "clean": "rm -rf dist && rm -rf generated",
     "test": "npm run clean && webpack --config webpack-test.config.js && karma start && remap-istanbul -i generated/coverage.json > generated/coverage-final.json && node scripts/generate-coverage.js text",

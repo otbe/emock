@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "noLib": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "typings/main.d.ts",
+    "typings/main"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "emock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "emock generates automatically mocks from you classes",
   "main": "dist/emock.js",
   "typings": "dist/emock.d.ts",
@@ -13,6 +13,13 @@
     "coverage-lcovonly": "npm run test && node scripts/generate-coverage.js lcovonly",
     "test-travis": "npm run coverage-lcovonly"
   },
+  "keywords": [
+    "mock",
+    "testing",
+    "mockito",
+    "mocks",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/otbe/emock.git"

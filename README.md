@@ -7,6 +7,10 @@
 The entire public API will be mocked. It is especially designed to use in conjunction with ES6 classes (but not exclusive).
 Internally it uses [expect](https://github.com/mjackson/expect) spies. It has full typescript support and was developed for it!
 
+##Install
+
+```npm i emock --save-dev``
+
 ##Usage
 It is as simple as:
 
@@ -22,7 +26,7 @@ class MyService {
   }
 }
 
-describe('Usage', () => {
+describe('Usage'`, () => {
   it('should show me usage', () => {
     let m: Mock<MyService> = Mock.of(MyService);
 

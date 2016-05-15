@@ -26,7 +26,7 @@ class MyService {
   }
 }
 
-describe('Usage'`, () => {
+describe('Usage', () => {
   it('should show me usage', () => {
     let m: Mock<MyService> = Mock.of(MyService);
 

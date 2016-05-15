@@ -84,7 +84,3 @@ You will need some polyfills for your environment if there is no support for use
 
 * [Reflect API](https://www.npmjs.com/package/reflect-metadata) with metadata support
 * ```Symbol``` polyfill (comes with babel-polyfill for example)
-
-
-##Known issues
-Sourcemaps are broken while testing. :(

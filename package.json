@@ -1,6 +1,6 @@
 {
   "name": "emock",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "emock generates automatically mocks from you classes",
   "main": "dist/emock.js",
   "typings": "dist/emock.d.ts",

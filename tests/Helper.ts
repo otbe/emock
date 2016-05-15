@@ -13,6 +13,20 @@ describe('Helper.ts', () => {
       expect(getPropertyNames(o).indexOf('b')).toBeGreaterThan(-1);
       expect(getPropertyNames(o).indexOf('c')).toBe(-1);
     });
+
+    it('should parse property names out of an obejct and its inherited objects', () => {
+      class MyService {
+        fn() {}
+      }
+
+      class ExtendedMyService extends MyService {
+        fn2(){}
+      }
+
+      let instance = Object.create(ExtendedMyService.prototype);
+      expect(getPropertyNames(instance).indexOf('fn')).toBeGreaterThan(-1);
+      expect(getPropertyNames(instance).indexOf('fn2')).toBeGreaterThan(-1);
+    });
   });
 
   describe('isFunction', () => {

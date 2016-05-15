@@ -9,7 +9,7 @@ Internally it uses [expect](https://github.com/mjackson/expect) spies. It has fu
 
 ##Install
 
-```npm i emock --save-dev``
+```npm i emock --save-dev```
 
 ##Usage
 It is as simple as:

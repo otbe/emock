@@ -1,7 +1,7 @@
 var fs = require('fs');
 var EOL = require('os').EOL;
 
-let typeDefinitions = fs.readFileSync('dist/emock.d.ts', { encoding: 'utf-8' });
+var typeDefinitions = fs.readFileSync('dist/emock.d.ts', { encoding: 'utf-8' });
 typeDefinitions = typeDefinitions.split(EOL);
 
 var imports = [];

@@ -2,9 +2,9 @@
 [![Build Status](https://travis-ci.org/otbe/emock.svg?branch=master)](https://travis-ci.org/otbe/emock)
 [![Coverage Status](https://coveralls.io/repos/github/otbe/emock/badge.svg?branch=master)](https://coveralls.io/github/otbe/emock?branch=master)
 
-*emock* automatically generates mocks from you classes. The entire public API will be mocked. It is especially designed
+*emock* automatically generates mocks from your classes. The entire public API will be mocked. It is especially designed
 to use in conjunction with ES6 classes (but not exclusive). Internally it uses [expect](https://github.com/mjackson/expect) spies.
-It has full typescript support and was developed for it!
+It has full TypeScript support and was developed for it!
 
 ##Install
 

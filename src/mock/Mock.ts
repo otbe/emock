@@ -37,8 +37,7 @@ export class Mock<T> {
           if (isFunction(returnValue)) {
             return _this.getSpy(property);
           }
-
-
+          
           return returnValue;
         },
         set: function setter(newValue) {

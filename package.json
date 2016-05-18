@@ -7,16 +7,12 @@
   "scripts": {
     "clean": "rm -rf dist && rm -rf generated",
     "postinstall": "typings install",
-
     "build": "npm run clean && webpack && ./scripts/build.sh",
-
     "test": "npm run clean && webpack --config webpack-test.config.js && karma start && remap-istanbul -i generated/coverage.json > generated/coverage-final.json && node scripts/generate-coverage.js text",
     "coverage-html": "npm run test && node scripts/generate-coverage.js html",
     "coverage-lcovonly": "npm run test && node scripts/generate-coverage.js lcovonly",
     "test-travis": "npm run coverage-lcovonly",
-
     "preversion": "npm run test",
-    "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
   },
   "keywords": [

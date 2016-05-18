@@ -1,9 +1,17 @@
 language: node_js
 node_js:
-  - "5"
+- '5'
 install:
-  - npm install
-  - chmod +x scripts/build.sh
+- npm install
+- chmod +x scripts/build.sh
 script: npm run test-travis
 after_success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+deploy:
+  provider: npm
+  email: benjamin.otto@style-systems.de
+  api_key:
+    secure: jRadS7m8h6z6OWWA1XCSgR/LYG8WsCDe9cqhWSGN2wv2c0B7K3yav720FiN5uWokaseLm5YOgdSo24w3WbVnNMJG1QZIoMe/YSuakaGQmw0VFsvkyQBh9bveqb+63gO89uwavyThelcHl0tO9s270qrI7Z2Rqxh7LyiDvvuVDt8T24ouJPRAzzXhY8tGkKt4RNtjks6WrT/DI51NeoNPQXIm6ks7A3Xl5oSNVie87MBdqTf2Y3A91kJy4RplPwZJWoAmGvJKANqXjQDZz3ryjwetRBewtnQkWr/gJo5S6tN8FpQ3iF67JLl7aujB5+v6qLQcvCj8fd9YCuqt+lekwlpXu3kciCoSAulXMLw8g7EFQqPWFDX6oFhBhOIXQW6caXhswQ5wdHeY5xfT9tKmjA0/lADJeZYU3WbAKR8hiuJy2vIR0T5mRqWAHPp71MEiRdNVnT+Bg+7TswMvYaMyB8u+PifBQyg/ryE3JR7R2Bwd4HXqvkJcWGl0vaPmsXyv1IwAavej1fcykCxaWFqQX9RWXaaiPqlk8bJRO1tOQ38me7HA2LO0n8EO7drTTmBloLs8a4QUrS0iwiI2FWEqzML3cURfpnYG7hVObIlf3D4WRbqfsba/uMhMoYVGUnZzmfV0R/rklg41Gvo+vqfciQSnmU3bvhO+WGd5OmHLCnk=
+  on:
+    tags: true
+    repo: otbe/emock

@@ -23,6 +23,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    require('webpack-fail-plugin')
+  ],
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: [ '', '.ts', '.js' ],

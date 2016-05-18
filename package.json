@@ -53,7 +53,8 @@
     "ts-loader": "^0.8.2",
     "typescript": "^1.8.10",
     "typings": "^1.0.3",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "webpack-fail-plugin": "^1.0.4"
   },
   "peerDependencies": {
     "expect": "1.x.x",

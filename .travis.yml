@@ -4,11 +4,11 @@ node_js:
 install:
   - npm install
   - chmod +x scripts/build.sh
+  - ./node_modules/.bin/typings install
 script: npm run test-travis
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
-  - ./node_modules/.bin/typings install
   - npm run build
 deploy:
   provider: npm

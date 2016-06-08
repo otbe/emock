@@ -1,6 +1,6 @@
 {
   "name": "emock",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "dependencies": {
     "abbrev": {
       "version": "1.0.7",

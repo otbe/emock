@@ -57,6 +57,7 @@
   },
   "peerDependencies": {
     "expect": "1.x.x",
-    "is-equal": "1.x.x"
+    "is-equal": "1.x.x",
+    "reflect-metadata": "^0.1.3"
   }
 }

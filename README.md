@@ -1,4 +1,4 @@
-#emock
+# emock
 [![Build Status](https://travis-ci.org/otbe/emock.svg?branch=master)](https://travis-ci.org/otbe/emock)
 [![Coverage Status](https://coveralls.io/repos/github/otbe/emock/badge.svg?branch=master)](https://coveralls.io/github/otbe/emock?branch=master)
 
@@ -6,11 +6,11 @@
 to use in conjunction with ES6 classes (but not exclusive). Internally it uses [expect](https://github.com/mjackson/expect) spies.
 It has full TypeScript support and was developed for it!
 
-##Install
+## Install
 
 ```npm i emock --save-dev```
 
-##Usage
+## Usage
 It is as simple as:
 
 ```javascript
@@ -55,7 +55,7 @@ describe('Usage', () => {
 ```
 See tests for more examples. :)
 
-##Matchers
+## Matchers
 Like I said before ```m.spyOn(x => x.echo('Foo'));``` records a call signature, but you don't have to use explicit values
 like in the example above. You can use some matchers from the ```It``` package. For example:
 
@@ -73,7 +73,7 @@ m.mock.echo(<any>5);
 
 ```
 
-##Dependencies
+## Dependencies
 *emock* itself has no dependencies, but some peerDependencies.
 
 * [expect](https://github.com/mjackson/expect) (because *emock* relies on it)

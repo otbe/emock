@@ -1,6 +1,6 @@
 {
   "name": "emock",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "smart mocks for expect",
   "main": "dist-release/index.js",
   "typings": "dist-release/src/index.d.ts",

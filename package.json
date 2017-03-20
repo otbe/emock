@@ -31,17 +31,17 @@
   },
   "homepage": "https://github.com/otbe/emock#readme",
   "devDependencies": {
+    "@mercateo/ws": "1.0.1-62",
+    "@types/expect": "^1.20.0",
     "babel-polyfill": "^6.23.0",
     "expect": "^1.20.2",
     "is-equal": "^1.5.1",
     "reflect-metadata": "^0.1.10"
   },
   "peerDependencies": {
+    "@types/expect": "1.x.x",
     "expect": "1.x.x",
     "is-equal": "1.x.x"
   },
-  "dependencies": {
-    "@mercateo/ws": "1.0.1-62",
-    "@types/expect": "^1.20.0"
-  }
+  "dependencies": {}
 }

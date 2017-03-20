@@ -8,7 +8,12 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "declaration": true,
-    "noLib": false
+    "noLib": false,
+    "types": [
+      "expect",
+      "mocha",
+      "reflect-metadata"
+    ]
   },
   "exclude": [
     "node_modules",

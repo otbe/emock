@@ -1,7 +1,6 @@
-generated/
 .idea/
 build/
 node_modules/
-typings/
-coverage/
 dist/
+dist-release/
+dist-tests/

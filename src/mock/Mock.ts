@@ -3,7 +3,7 @@ import { getPropertyNames, isFunction } from '../utils/Helper';
 import { VALUE_KEY, CALL_SIGNATURE_KEY, SPY_KEY } from './MetaKeys';
 
 export interface INewable<T> {
-  new(...args: Array<any>): T
+  new (...args: Array<any>): T;
 }
 
 export class Mock<T> {
@@ -11,7 +11,7 @@ export class Mock<T> {
 
   mock: T;
 
-  constructor (private target: INewable<T>, exclude: Array<string> = []) {
+  constructor(private target: INewable<T>, exclude: Array<string> = []) {
     const _this = this;
 
     this.mock = Object.create(target.prototype);
@@ -31,13 +31,13 @@ export class Mock<T> {
       Object.defineProperty(this.mock, property, {
         enumerable: true,
         configurable: true,
-        get: function getter () {
+        get: function getter() {
           const returnValue = Reflect.getMetadata(VALUE_KEY, _this.mock, property);
 
           if (isFunction(returnValue)) {
             return _this.getSpy(property);
           }
-          
+
           return returnValue;
         },
         set: function setter(newValue) {
@@ -49,7 +49,7 @@ export class Mock<T> {
       Object.defineProperty(this.nameGenerator, property, {
         enumerable: true,
         configurable: true,
-        get: function getter () {
+        get: function getter() {
           assert(isFunction(Reflect.getMetadata(VALUE_KEY, _this.mock, property)), `${property.toString()} is not a function`);
 
           return (...args: Array<any>) => {
@@ -88,7 +88,7 @@ export class Mock<T> {
     // });
   }
 
-  spyOn (keyGen: { (x: T): any }): Spy {
+  spyOn(keyGen: { (x: T): any }): Spy<T> {
     const targetKey = keyGen(this.nameGenerator);
 
     assert(typeof targetKey === 'string', `${targetKey.toString()} is not valid target key`);
@@ -97,7 +97,7 @@ export class Mock<T> {
     return this.getSpy(targetKey);
   }
 
-  private getSpy (targetKey: string): Spy {
+  private getSpy(targetKey: string): Spy<T> {
     if (!Reflect.hasMetadata(SPY_KEY, this.mock, targetKey)) {
       Reflect.defineMetadata(SPY_KEY, createSpy(), this.mock, targetKey);
     }
@@ -105,7 +105,7 @@ export class Mock<T> {
     return Reflect.getMetadata(SPY_KEY, this.mock, targetKey);
   }
 
-  static of<U> (target: INewable<U>, exclude: Array<string> = [ 'toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'propertyIsEnumerable', 'isPrototypeOf', '__defineGetter__', '__defineSetter__', '__lookupGetter__', '__lookupSetter__', '__proto__', 'constructor' ]): Mock<U> {
+  static of<U>(target: INewable<U>, exclude: Array<string> = ['toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'propertyIsEnumerable', 'isPrototypeOf', '__defineGetter__', '__defineSetter__', '__lookupGetter__', '__lookupSetter__', '__proto__', 'constructor']): Mock<U> {
     return new Mock(target, exclude);
   }
 }

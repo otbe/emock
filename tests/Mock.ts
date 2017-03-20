@@ -8,29 +8,29 @@ extend(expectExtensions);
 class MyService {
   testProperty: number;
 
-  simple () {
+  simple() {
     return true;
   }
 
-  multipleArguments (any: any, string: string, number: number, obj: Object) {
+  multipleArguments(any: any, string: string, number: number, obj: Object) {
     return true;
   }
 }
 
 class MyServiceExtended extends MyService {
-  simpleString (s: string) {
+  simpleString(s: string) {
     return true;
   }
 
-  simpleNumber (s: number) {
+  simpleNumber(s: number) {
     return true;
   }
 
-  simpleObject (s: Object) {
+  simpleObject(s: Object) {
     return true;
   }
 
-  simpleArray (s: Array<string>) {
+  simpleArray(s: Array<string>) {
     return true;
   }
 
@@ -39,7 +39,7 @@ class MyServiceExtended extends MyService {
   }
 }
 
-(<any>MyServiceExtended.prototype).prototypeProperty = 5;
+(MyServiceExtended.prototype as any).prototypeProperty = 5;
 
 describe('Mock.ts', () => {
   it('should create a mock thats a MyService instance', () => {
@@ -76,22 +76,22 @@ describe('Mock.ts', () => {
 
   it('should let me set prototype properties', () => {
     let m = Mock.of(MyServiceExtended);
-    expect((<any>m.mock).prototypeProperty).toBe(5);
-    (<any>m.mock).prototypeProperty = 10;
-    expect((<any>m.mock).prototypeProperty).toBe(10);
+    expect((m.mock as any).prototypeProperty).toBe(5);
+    (m.mock as any).prototypeProperty = 10;
+    expect((m.mock as any).prototypeProperty).toBe(10);
   });
 
   it('should exclude some methods form being mocked', () => {
-    let m = Mock.of(MyServiceExtended, [ 'constructor', 'notMocked' ]);
+    let m = Mock.of(MyServiceExtended, ['constructor', 'notMocked']);
     expect(m.mock.notMocked()).toBe(100);
   });
 
   it('should let me configure the spy', () => {
     let m = Mock.of(MyServiceExtended);
 
-    m.spyOn(x => x.simple()).andReturn(20);
+    m.spyOn(x => x.simple()).andReturn(false);
 
-    expect(m.mock.simple()).toBe(20);
+    expect(m.mock.simple()).toBeFalsy();
   });
 
   it('should fail on non function properties', () => {
@@ -105,27 +105,27 @@ describe('Mock.ts', () => {
 
     // success
     m.spyOn(x => x.simpleString('test')).andReturn(false);
-    expect(() => (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature()).toThrow();
+    expect(() => (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature()).toThrow();
     expect(m.mock.simpleString('test')).toBe(false);
-    (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleString(<any>5);
-    expect(() => (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleString(5 as any);
+    expect(() => (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     m.mock.simpleString('test2');
-    expect(() => (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature()).toThrow();
+    expect(() => (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     // success
     m.spyOn(x => x.simpleString(It.isString())).andReturn(false);
     expect(m.mock.simpleString('test')).toBe(false);
-    (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature();
     expect(m.mock.simpleString('test2')).toBe(false);
-    (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleString(<any>5);
-    expect(() => (<any>expect(m.mock.simpleString)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleString(5 as any);
+    expect(() => (expect(m.mock.simpleString) as any).toHaveBeenCalledWithSignature()).toThrow();
   });
 
   it('should let me define a call signature & verifies it for numbers', () => {
@@ -134,25 +134,25 @@ describe('Mock.ts', () => {
     // success
     m.spyOn(x => x.simpleNumber(5)).andReturn(false);
     expect(m.mock.simpleNumber(5)).toBe(false);
-    (<any>expect(m.mock.simpleNumber)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleNumber) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleNumber(<any>'test');
-    expect(() => (<any>expect(m.mock.simpleNumber)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleNumber('test' as any);
+    expect(() => (expect(m.mock.simpleNumber) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     m.mock.simpleNumber(10);
-    expect(() => (<any>expect(m.mock.simpleNumber)).toHaveBeenCalledWithSignature()).toThrow();
+    expect(() => (expect(m.mock.simpleNumber) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     // success
     m.spyOn(x => x.simpleNumber(It.isNumber())).andReturn(false);
     expect(m.mock.simpleNumber(5)).toBe(false);
-    (<any>expect(m.mock.simpleNumber)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleNumber) as any).toHaveBeenCalledWithSignature();
     expect(m.mock.simpleNumber(10)).toBe(false);
-    (<any>expect(m.mock.simpleNumber)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleNumber) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleNumber(<any>'test');
-    expect(() => (<any>expect(m.mock.simpleNumber)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleNumber('test' as any);
+    expect(() => (expect(m.mock.simpleNumber) as any).toHaveBeenCalledWithSignature()).toThrow();
   });
 
   it('should let me define a call signature & verifies it for objects', () => {
@@ -161,52 +161,52 @@ describe('Mock.ts', () => {
     // success
     m.spyOn(x => x.simpleObject({ a: 10 })).andReturn(false);
     expect(m.mock.simpleObject({ a: 10 })).toBe(false);
-    (<any>expect(m.mock.simpleObject)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleObject) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleObject({a : 20});
-    expect(() => (<any>expect(m.mock.simpleObject)).toHaveBeenCalledWithSignature()).toThrow();
-    m.mock.simpleObject(<any>Symbol());
-    expect(() => (<any>expect(m.mock.simpleObject)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleObject({ a: 20 });
+    expect(() => (expect(m.mock.simpleObject) as any).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleObject(Symbol() as any);
+    expect(() => (expect(m.mock.simpleObject) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     // success
     m.spyOn(x => x.simpleObject(It.isObject())).andReturn(false);
     expect(m.mock.simpleObject({ a: 10 })).toBe(false);
-    (<any>expect(m.mock.simpleObject)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleObject) as any).toHaveBeenCalledWithSignature();
     expect(m.mock.simpleObject({ a: 20 })).toBe(false);
-    (<any>expect(m.mock.simpleObject)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.simpleObject) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleObject(<any>Symbol());
-    expect(() => (<any>expect(m.mock.simpleObject)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleObject(Symbol() as any);
+    expect(() => (expect(m.mock.simpleObject) as any).toHaveBeenCalledWithSignature()).toThrow();
   });
 
   it('should let me define a call signature & verifies it for arrays', () => {
     let m = Mock.of(MyServiceExtended);
 
     // success
-    m.spyOn(x => x.simpleArray([ 'a' ])).andReturn(false);
-    expect(() => (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature()).toThrow();
-    expect(m.mock.simpleArray([ 'a' ])).toBe(false);
-    (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature();
+    m.spyOn(x => x.simpleArray(['a'])).andReturn(false);
+    expect(() => (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature()).toThrow();
+    expect(m.mock.simpleArray(['a'])).toBe(false);
+    (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleArray(<any>5);
-    expect(() => (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleArray(5 as any);
+    expect(() => (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature()).toThrow();
 
-    m.mock.simpleArray([ 'b' ]);
-    expect(() => (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleArray(['b']);
+    expect(() => (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     // success
     m.spyOn(x => x.simpleArray(It.isArray())).andReturn(false);
-    expect(m.mock.simpleArray([ 'b' ])).toBe(false);
-    (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature();
-    expect(m.mock.simpleArray([ 'a', 'c' ])).toBe(false);
-    (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature();
+    expect(m.mock.simpleArray(['b'])).toBe(false);
+    (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature();
+    expect(m.mock.simpleArray(['a', 'c'])).toBe(false);
+    (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.simpleArray(<any>5);
-    expect(() => (<any>expect(m.mock.simpleArray)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.simpleArray(5 as any);
+    expect(() => (expect(m.mock.simpleArray) as any).toHaveBeenCalledWithSignature()).toThrow();
   });
 
   it('should let me define a call signature & verifies it for multiple arguments', () => {
@@ -215,25 +215,25 @@ describe('Mock.ts', () => {
     // success
     m.spyOn(x => x.multipleArguments('string', 'string2', 20, { a: 5 })).andReturn(false);
     expect(m.mock.multipleArguments('string', 'string2', 20, { a: 5 })).toBe(false);
-    (<any>expect(m.mock.multipleArguments)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.multipleArguments) as any).toHaveBeenCalledWithSignature();
 
     // fail
     m.mock.multipleArguments('test', 'string1', 30, { a: 6 });
-    expect(() => (<any>expect(m.mock.multipleArguments)).toHaveBeenCalledWithSignature()).toThrow();
+    expect(() => (expect(m.mock.multipleArguments) as any).toHaveBeenCalledWithSignature()).toThrow();
 
-    m.mock.multipleArguments('test', <any>5, <any>'test', true);
-    expect(() => (<any>expect(m.mock.multipleArguments)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.multipleArguments('test', 5 as any, 'test' as any, true);
+    expect(() => (expect(m.mock.multipleArguments) as any).toHaveBeenCalledWithSignature()).toThrow();
 
     // success
     m.spyOn(x => x.multipleArguments(It.isAny(), It.isString(), It.isNumber(), It.isObject()));
     m.mock.multipleArguments('string', 'string2', 20, { a: 5 });
-    (<any>expect(m.mock.multipleArguments)).toHaveBeenCalledWithSignature();
+    (expect(m.mock.multipleArguments) as any).toHaveBeenCalledWithSignature();
 
-    m.mock.multipleArguments('string', 'string3',30, { a: 6});
-    (<any>expect(m.mock.multipleArguments)).toHaveBeenCalledWithSignature();
+    m.mock.multipleArguments('string', 'string3', 30, { a: 6 });
+    (expect(m.mock.multipleArguments) as any).toHaveBeenCalledWithSignature();
 
     // fail
-    m.mock.multipleArguments('string', <any>5, <any>'test', true);
-    expect(() => (<any>expect(m.mock.multipleArguments)).toHaveBeenCalledWithSignature()).toThrow();
+    m.mock.multipleArguments('string', 5 as any, 'test' as any, true);
+    expect(() => (expect(m.mock.multipleArguments) as any).toHaveBeenCalledWithSignature()).toThrow();
   });
 });

@@ -16,11 +16,11 @@ describe('Helper.ts', () => {
 
     it('should parse property names out of an obejct and its inherited objects', () => {
       class MyService {
-        fn() {}
+        fn() { }
       }
 
       class ExtendedMyService extends MyService {
-        fn2(){}
+        fn2() { }
       }
 
       let instance = Object.create(ExtendedMyService.prototype);
@@ -31,12 +31,12 @@ describe('Helper.ts', () => {
 
   describe('isFunction', () => {
     it('should return true only for functions', () => {
-      expect(isFunction(() => {})).toBeTruthy();
+      expect(isFunction(() => { })).toBeTruthy();
       expect(isFunction(undefined)).toBeFalsy();
-      expect(isFunction(<any>'Test')).toBeFalsy();
-      expect(isFunction(<any>5)).toBeFalsy();
-      expect(isFunction(<any>{})).toBeFalsy();
-      expect(isFunction(<any>[])).toBeFalsy();
+      expect(isFunction( 'Test' as any)).toBeFalsy();
+      expect(isFunction( 5 as any)).toBeFalsy();
+      expect(isFunction( {} as any)).toBeFalsy();
+      expect(isFunction( [] as any)).toBeFalsy();
     });
   });
 });

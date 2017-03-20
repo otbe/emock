@@ -1,8 +1,0 @@
-{
-  "globalDevDependencies": {
-    "mocha": "registry:dt/mocha#2.2.5+20160317120654"
-  },
-  "globalDependencies": {
-    "expect": "registry:dt/expect#1.13.4+20160316155526"
-  }
-}

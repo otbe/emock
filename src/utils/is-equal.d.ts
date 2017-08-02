@@ -3,4 +3,3 @@ declare module 'is-equal' {
 
   export default isEqual;
 }
-

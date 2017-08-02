@@ -8,10 +8,18 @@ export const expectExtensions: Extension = {
     assert(this.actual.getLastCall(), 'spy was never called');
 
     let lastCallArgs: Array<any> = this.actual.getLastCall().arguments;
-    let desiredCallArgs: Array<any> = Reflect.getMetadata(CALL_SIGNATURE_KEY, this.actual);
+    let desiredCallArgs: Array<any> = Reflect.getMetadata(
+      CALL_SIGNATURE_KEY,
+      this.actual
+    );
 
     assert(desiredCallArgs != null, 'No call signature recorded');
-    assert(lastCallArgs.length === desiredCallArgs.length, 'Call signature mismatch; present: %s <-> desired: %s arguments', lastCallArgs.length, desiredCallArgs.length);
+    assert(
+      lastCallArgs.length === desiredCallArgs.length,
+      'Call signature mismatch; present: %s <-> desired: %s arguments',
+      lastCallArgs.length,
+      desiredCallArgs.length
+    );
 
     let mismatchIndex = -1;
     let message: string;
@@ -47,11 +55,18 @@ export const expectExtensions: Extension = {
         default:
           if (!isEqual(lastCallArgs[i], desiredCallArgs[i])) {
             mismatchIndex = i;
-            message = 'Arguments mismatch; present: %s <-> desired: %s at position %s';
+            message =
+              'Arguments mismatch; present: %s <-> desired: %s at position %s';
           }
       }
 
-      assert(mismatchIndex === -1, message, lastCallArgs[mismatchIndex], desiredCallArgs[mismatchIndex], mismatchIndex);
+      assert(
+        mismatchIndex === -1,
+        message,
+        lastCallArgs[mismatchIndex],
+        desiredCallArgs[mismatchIndex],
+        mismatchIndex
+      );
     }
   }
 };
